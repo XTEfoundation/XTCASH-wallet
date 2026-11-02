@@ -39,10 +39,12 @@ jobs:
     env:
       BUNDLE_ID: io.traaitt.osx
       PROFILE_NAME: XTE AppStore io.traaitt.osx
-      # Build numbers must increase; 1020 is the version already in the project.
-      BUILD_NUMBER: ${{ github.run_number + 1100 }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build number
+        # Must increase per upload; 1020 is the version already in the project.
+        run: echo "BUILD_NUMBER=$(( ${{ github.run_number }} + 1100 ))" >> "$GITHUB_ENV"
 
       - name: Select Xcode
         run: |
