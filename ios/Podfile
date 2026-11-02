@@ -46,7 +46,8 @@ target 'XTE' do
     #  - std::vector<const T> is rejected (upstream sentry-cocoa 8 dropped
     #    the const),
     #  - std::set_terminate needs <exception>, no longer included
-    #    transitively.
+    #    transitively,
+    #  - Xcode 26 wants <sys/_types/_ucontext64.h> before ucontext64_t.
     sentry_dir = installer.sandbox.pod_dir('Sentry').to_s
     {
       'Sources/Sentry/include/SentryThreadMetadataCache.hpp' => [
@@ -55,6 +56,10 @@ target 'XTE' do
       ],
       'Sources/SentryCrash/Recording/Monitors/SentryCrashMonitor_CPPException.cpp' => [
         ["#include <typeinfo>\n", "#include <typeinfo>\n#include <exception>\n"],
+      ],
+      # Xcode 26 (explicit modules): ucontext64_t needs its own header on arm64.
+      'Sources/SentryCrash/Recording/Tools/SentryCrashMachineContext.c' => [
+        ["#include <mach/mach.h>\n", "#include <mach/mach.h>\n#ifdef __arm64__\n#include <sys/_types/_ucontext64.h>\n#endif\n"],
       ],
     }.each do |relative_path, replacements|
       path = File.join(sentry_dir, relative_path)
