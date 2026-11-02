@@ -41,17 +41,31 @@ target 'XTE' do
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
 
-    # sentry-cocoa 7.x (pulled in by @sentry/react-native 4.x) declares
-    # std::vector<const T>, which the libc++ in Xcode 15+ rejects. Same fix
-    # as upstream sentry-cocoa 8: drop the const.
-    sentry_cache = File.join(installer.sandbox.pod_dir('Sentry').to_s, 'Sources/Sentry/include/SentryThreadMetadataCache.hpp')
-    if File.exist?(sentry_cache)
-      contents = File.read(sentry_cache)
-      patched = contents.gsub('std::vector<const ThreadHandleMetadataPair>', 'std::vector<ThreadHandleMetadataPair>')
-                        .gsub('std::vector<const QueueMetadata>', 'std::vector<QueueMetadata>')
+    # sentry-cocoa 7.x (pulled in by @sentry/react-native 4.x) does not
+    # compile with the libc++ in Xcode 15+:
+    #  - std::vector<const T> is rejected (upstream sentry-cocoa 8 dropped
+    #    the const),
+    #  - std::set_terminate needs <exception>, no longer included
+    #    transitively.
+    sentry_dir = installer.sandbox.pod_dir('Sentry').to_s
+    {
+      'Sources/Sentry/include/SentryThreadMetadataCache.hpp' => [
+        ['std::vector<const ThreadHandleMetadataPair>', 'std::vector<ThreadHandleMetadataPair>'],
+        ['std::vector<const QueueMetadata>', 'std::vector<QueueMetadata>'],
+      ],
+      'Sources/SentryCrash/Recording/Monitors/SentryCrashMonitor_CPPException.cpp' => [
+        ["#include <typeinfo>\n", "#include <typeinfo>\n#include <exception>\n"],
+      ],
+    }.each do |relative_path, replacements|
+      path = File.join(sentry_dir, relative_path)
+      next unless File.exist?(path)
+      contents = File.read(path)
+      patched = replacements.reduce(contents) do |text, (from, to)|
+        text.include?(to) ? text : text.gsub(from, to)
+      end
       if patched != contents
-        File.chmod(0644, sentry_cache)
-        File.write(sentry_cache, patched)
+        File.chmod(0644, path)
+        File.write(path, patched)
       end
     end
 
