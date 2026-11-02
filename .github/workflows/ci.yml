@@ -77,6 +77,8 @@ jobs:
       - name: xcodebuild (Release, iOS Simulator, unsigned)
         working-directory: ios
         run: |
+          # Report every compile error in one run instead of stopping at the first.
+          defaults write com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors -bool YES
           set +e
           xcodebuild \
             -workspace XTE.xcworkspace \

@@ -41,6 +41,20 @@ target 'XTE' do
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
 
+    # sentry-cocoa 7.x (pulled in by @sentry/react-native 4.x) declares
+    # std::vector<const T>, which the libc++ in Xcode 15+ rejects. Same fix
+    # as upstream sentry-cocoa 8: drop the const.
+    sentry_cache = File.join(installer.sandbox.pod_dir('Sentry').to_s, 'Sources/Sentry/include/SentryThreadMetadataCache.hpp')
+    if File.exist?(sentry_cache)
+      contents = File.read(sentry_cache)
+      patched = contents.gsub('std::vector<const ThreadHandleMetadataPair>', 'std::vector<ThreadHandleMetadataPair>')
+                        .gsub('std::vector<const QueueMetadata>', 'std::vector<QueueMetadata>')
+      if patched != contents
+        File.chmod(0644, sentry_cache)
+        File.write(sentry_cache, patched)
+      end
+    end
+
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |build_config|
         # Old pods declare iOS 7/8/9, which current Xcode can no longer
