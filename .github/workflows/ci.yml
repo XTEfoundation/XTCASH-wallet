@@ -55,7 +55,9 @@ jobs:
   ios:
     # Unsigned simulator build: proves the Xcode project, pods and native
     # code compile. It does not sign, archive or upload anything.
-    runs-on: macos-15
+    # Intel image: the simulator build is x86_64 anyway (see README), and
+    # arm64 macOS runners were not acquired for 15 min on 2026-11-02.
+    runs-on: macos-15-intel
     timeout-minutes: 90
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
