@@ -1,6 +1,8 @@
-# XTE Wallet
+# XTCASH Wallet
 
-Mobile wallet for traaitt [XTE], published by the [XTE Foundation](https://github.com/XTEfoundation).
+Mobile wallet for traaittXTCASH [XTCASH] ([TRRXITTE/traaittXTCASH](https://github.com/TRRXITTE/traaittXTCASH)), published by the [XTE Foundation](https://github.com/XTEfoundation).
+
+It is built from the same code and toolchain as the [XTE wallet](https://github.com/XTEfoundation/XTEcash-wallet) (branch `cursor/xte-android-release-7b71` at `ad7a48d`, history kept), retargeted to the XTCASH chain. Internal identifiers that users never see stay as they were: the React Native component and Xcode target `XTE`, the native module `XTE`, the Java package `io.traaitt.osx` and the `XTE_UPLOAD_*` signing variables.
 
 This tree is a React Native **0.68.7** app (React 18.1). Earlier migration notes that claimed React Native 0.76.1 did not match `package.json` and have been removed. Stay on 0.68.7 until an upgrade is done on its own branch.
 
@@ -31,7 +33,7 @@ yarn start
 yarn android
 ```
 
-The JS component name is `XTE` (`app.json`). The Android application id is `io.traaitt.osx`.
+The JS component name is `XTE` (`app.json`, display name `XTCASH`). The Android application id is `io.traaitt.xtcash` (the Java namespace stays `io.traaitt.osx`).
 
 ## Network
 
@@ -39,28 +41,33 @@ Configured in `src/Config.js`. Do not replace these with guessed hosts.
 
 | Setting | Value |
 | --- | --- |
-| Coin | XTE, address prefix `1334` (addresses start with `XT`) |
-| Default daemon | `main.trrxitte.com:443` TLS. This is a daemon, not a cache API. |
-| Node list | `https://raw.githubusercontent.com/TRRXITTE/XTEnetworkserver/refs/heads/main/traaitt.json` |
+| Coin | XTCASH, address prefix `925524` (addresses start with `cash`, 98 characters; integrated 186) |
+| Decimals / minimum fee | 2 / `100` atomic units (`1.00 XTCASH`), flat fee, no dev fee |
+| Block target | 32 s |
+| Mixin | default 3 before 440,000; max 4 after 440,000, 5 after 800,000, 8 (default 8) after 1,000,000 |
+| Default daemon | `main.trrxitte.com:14423`, plain HTTP. This is a daemon, not a cache API. |
+| Node list | [`nodes.json`](nodes.json) in this repo, served from `https://raw.githubusercontent.com/XTEfoundation/XTCASH-wallet/main/nodes.json` |
+| Explorer | `https://explorer.traaittxtcash.com` |
 
-That node list publishes regional daemons on port `14485` without TLS. The wallet stores a node as `host:port:ssl` or `host:port:plain`. Older `host:port` values are still accepted: port 443 is treated as TLS, every other port as plain TCP.
+All values come from `src/config/CryptoNoteConfig.h` and `WalletConfig.h` in traaittXTCASH and were checked against the live daemon (`/info`, `/height`, `/fee`, `/getwalletsyncdata`). The XTCASH daemon RPC port is `14423` (P2P `14487`). The HTTPS proxy at `https://main.trrxitte.com/xtcash/` sits under a path, which the wallet's daemon client cannot address, so nodes are listed on the RPC port without TLS. The wallet stores a node as `host:port:ssl` or `host:port:plain`. Older `host:port` values are still accepted: port 443 is treated as TLS, every other port as plain TCP.
 
-Payment URIs use `xte://`, for example:
+Payment URIs use `xtcash://`, for example:
 
 ```text
-xte://XT...address?amount=10000&name=Example&paymentid=<64 hex chars>
+xtcash://cash...address?amount=10000&name=Example&paymentid=<64 hex chars>
 ```
 
-`amount` is in atomic units (two decimal places, so `10000` is `100.00 XTE`).
+`amount` is in atomic units (two decimal places, so `10000` is `100.00 XTCASH`).
 
 ## Android release
 
-Versions are aligned at versionCode `1020` / versionName `1.020.0`:
+Versions are aligned at versionCode `1` / versionName `1.0.0`:
 
 - `package.json` `version`
 - `android/app/build.gradle` `versionCode` and `versionName`
-- `src/Config.js` `appVersion` (`v1.020.0`, the string shown in settings)
-- HTTP user agent `XTE-v` + `versionName`, built from `BuildConfig.VERSION_NAME`
+- `src/Config.js` `appVersion` (`v1.0.0`, the string shown in settings)
+- iOS `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` (`1.0.0` / `1`)
+- HTTP user agent `XTCASH-v` + `versionName`, built from `BuildConfig.VERSION_NAME`
 
 Bump all of those together for the next release.
 
@@ -105,7 +112,7 @@ Create an upload key (example):
 ```bash
 keytool -genkeypair -v \
   -keystore upload.keystore \
-  -alias xte \
+  -alias xtcash \
   -keyalg RSA -keysize 2048 -validity 10000
 ```
 
@@ -121,10 +128,10 @@ The Xcode project lives in `ios/XTE.xcodeproj` (React Native 0.68, JSC, old arch
 
 | | |
 |---|---|
-| Display name | XTE |
-| Bundle identifier | `io.traaitt.osx` |
-| Version / build | `1.020.0` / `1020` (`MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` in the project) |
-| URL scheme | `xte://` |
+| Display name | XTCASH |
+| Bundle identifier | `io.traaitt.xtcash` |
+| Version / build | `1.0.0` / `1` (`MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` in the project) |
+| URL scheme | `xtcash://` |
 | Minimum iOS | 13.0, iPhone only, portrait |
 
 Requirements: macOS with Xcode 16 (CI uses Xcode 16.4 on `macos-15`), Node 18, Yarn 1, CocoaPods 1.15 or newer.
@@ -150,9 +157,9 @@ Nothing needed for signing is in this repository and none of it should be commit
 
 To ship a build:
 
-1. In the Apple Developer account of the publishing organisation, register the App ID `io.traaitt.osx` and create the App Store Connect app record for it.
+1. In the Apple Developer account of the publishing organisation, register the App ID `io.traaitt.xtcash` and create the App Store Connect app record for it.
 2. Local release: open `ios/XTE.xcworkspace`, select the `XTE` target, *Signing & Capabilities*, choose your team and leave *Automatically manage signing* on (or select a distribution certificate and an App Store provisioning profile). Do not commit the resulting `DEVELOPMENT_TEAM` change if this is a shared branch. Then *Product, Archive* and *Distribute App, App Store Connect*.
-3. CI release (optional, not set up here): store the distribution certificate (base64 `.p12` plus password), the provisioning profile and an App Store Connect API key as encrypted GitHub Actions secrets. Import them into a temporary keychain in the job, pass `DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE=Manual` and `PROVISIONING_PROFILE_SPECIFIER` to `xcodebuild archive`, and upload with `xcodebuild -exportArchive` or `xcrun altool` / Transporter. Delete the keychain at the end of the job.
+3. CI release: `.github/workflows/testflight.yml` archives, signs and uploads to TestFlight on every push to `main`. It needs the secrets `IOS_DIST_P12_BASE64`, `IOS_DIST_P12_PASSWORD`, `IOS_PROFILE_BASE64` (App Store profile for `io.traaitt.xtcash`), `ASC_KEY_P8`, `ASC_KEY_ID`, `ASC_ISSUER_ID` and `APPLE_TEAM_ID`; without them the TestFlight job is skipped instead of failing. In general: store the distribution certificate (base64 `.p12` plus password), the provisioning profile and an App Store Connect API key as encrypted GitHub Actions secrets. Import them into a temporary keychain in the job, pass `DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE=Manual` and `PROVISIONING_PROFILE_SPECIFIER` to `xcodebuild archive`, and upload with `xcodebuild -exportArchive` or `xcrun altool` / Transporter. Delete the keychain at the end of the job.
 
 Before App Store submission, also check: the Xcode/SDK version Apple currently requires for uploads (the project is verified on Xcode 16.4; newer SDKs may require an RN upgrade), the export-compliance answer (the app uses cryptography beyond HTTPS for wallet keys and signatures), a privacy manifest (`PrivacyInfo.xcprivacy`) for the required-reason APIs used by the app and its pods, and App Review's crypto-wallet rules (guideline 3.1.5: wallets must be published by an organisation).
 
@@ -162,13 +169,17 @@ Before App Store submission, also check: the Xcode/SDK version Apple currently r
 yarn test
 ```
 
+`src/__tests__/xtcashAddress.test.js` derives a wallet from a fixed seed and checks the `cash` address, its decoding, and that XTE (`XT...`) addresses are rejected. The expected address was accepted by the XTCASH daemon (`getblocktemplate` with it as `wallet_address`).
+
+`src/Config.js` overrides `MixinLimits.getMixinLimitsByHeight`: the backend's version returns the oldest fork's limit (max 4) while the default mixin is 8, which made every send fail with `MIXIN_TOO_BIG`.
+
 ## What is not in this release
 
 - **A signed iOS build and an App Store listing.** The iOS project builds unsigned in CI; signing, the App Store Connect record and submission are separate steps (see *iOS build and release*).
-- **Play Store listing and a new upload key.** `applicationId` stays `io.traaitt.osx`. Store submission is a separate step after signing.
+- **Play Store listing and a new upload key.** `applicationId` is `io.traaitt.xtcash`. Store submission is a separate step after signing.
 - **React Native upgrade, Play targetSdk 35, and navigation v6.** AGP is 7.4.2 with compileSdk/targetSdk 34 so this dependency set still builds. Google Play's current target API is higher; that upgrade has to land with an AGP/namespace pass, not as a drive-by.
 - **The JS library package name** `traaittcash-wallet-backend`. That is the published module this app imports. It is not a user-visible name.
 
 ## Reporting issues
 
-https://github.com/XTEfoundation/XTEcash-wallet/issues
+https://github.com/XTEfoundation/XTCASH-wallet/issues

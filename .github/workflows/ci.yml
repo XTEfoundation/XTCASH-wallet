@@ -101,7 +101,7 @@ jobs:
           APP=ios/build/Build/Products/Release-iphonesimulator/XTE.app
           test -f "$APP/main.jsbundle"
           /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' -c 'Print :CFBundleShortVersionString' -c 'Print :CFBundleVersion' -c 'Print :CFBundleDisplayName' "$APP/Info.plist"
-          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist")" = io.traaitt.osx
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist")" = io.traaitt.xtcash
       - uses: actions/upload-artifact@v4
         if: always()
         with:

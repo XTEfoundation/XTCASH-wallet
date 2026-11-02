@@ -1,17 +1,17 @@
 name: TestFlight
 
-# Signed Release archive of the iPhone app (io.traaitt.osx), exported as an
+# Signed Release archive of the iPhone app (io.traaitt.xtcash), exported as an
 # App Store .ipa and uploaded to TestFlight. Separate from ci.yml, which keeps
 # building the unsigned simulator app.
 #
 # Needs the repository secrets IOS_DIST_P12_BASE64, IOS_DIST_P12_PASSWORD,
 # IOS_PROFILE_BASE64, ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID, APPLE_TEAM_ID.
+# Without them the "signing" job reports it and the TestFlight job is skipped,
+# so a fork or a repo without secrets never goes red because of this file.
 
 on:
-  # workflow_dispatch only works once this file is on the default branch;
-  # until then a push to the release branch starts the upload.
   push:
-    branches: [cursor/xte-android-release-7b71]
+    branches: [main]
   workflow_dispatch:
     inputs:
       runner:
@@ -33,18 +33,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  signing:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - id: check
+        env:
+          P12: ${{ secrets.IOS_DIST_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_DIST_P12_PASSWORD }}
+          PROFILE: ${{ secrets.IOS_PROFILE_BASE64 }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          missing=""
+          for name in P12 P12_PASSWORD PROFILE ASC_KEY_P8 ASC_KEY_ID ASC_ISSUER_ID TEAM_ID; do
+            if [ -z "${!name}" ]; then missing="$missing $name"; fi
+          done
+          if [ -n "$missing" ]; then
+            echo "::notice::TestFlight skipped, signing secrets missing:$missing"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
   testflight:
+    needs: signing
+    if: needs.signing.outputs.ready == 'true'
     runs-on: ${{ inputs.runner || 'macos-15-intel' }}
     timeout-minutes: 120
     env:
-      BUNDLE_ID: io.traaitt.osx
-      PROFILE_NAME: XTE AppStore io.traaitt.osx
+      BUNDLE_ID: io.traaitt.xtcash
+      PROFILE_NAME: XTCASH AppStore io.traaitt.xtcash
     steps:
       - uses: actions/checkout@v4
 
       - name: Build number
-        # Must increase per upload; 1020 is the version already in the project.
-        run: echo "BUILD_NUMBER=$(( ${{ github.run_number }} + 1100 ))" >> "$GITHUB_ENV"
+        # Must increase per upload; 1 is the version already in the project.
+        run: echo "BUILD_NUMBER=$(( ${{ github.run_number }} + 1 ))" >> "$GITHUB_ENV"
 
       - name: Select Xcode
         run: |

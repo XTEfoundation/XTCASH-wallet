@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>XTE</string>
+	<string>XTCASH</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,10 +30,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>io.traaitt.osx</string>
+			<string>io.traaitt.xtcash</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>xte</string>
+				<string>xtcash</string>
 			</array>
 		</dict>
 	</array>
@@ -57,11 +57,11 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>XTE uses the camera to scan QR codes for XTE addresses and payment requests.</string>
+	<string>XTCASH uses the camera to scan QR codes for XTCASH addresses and payment requests.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>XTE uses Face ID to unlock your wallet and confirm transactions.</string>
+	<string>XTCASH uses Face ID to unlock your wallet and confirm transactions.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>XTE does not record audio. The QR code scanner's camera library declares microphone access, but XTE never uses it.</string>
+	<string>XTCASH does not record audio. The QR code scanner's camera library declares microphone access, but XTCASH never uses it.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

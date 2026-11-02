@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      "name": "MAIN XTCASH (US Central)",
+      "url": "main.trrxitte.com",
+      "port": 14423,
+      "ssl": false,
+      "cache": false
+    },
+    {
+      "name": "EUROPE WEST XTCASH (London)",
+      "url": "eu-west.trrxitte.com",
+      "port": 14423,
+      "ssl": false,
+      "cache": false
+    }
+  ]
+}

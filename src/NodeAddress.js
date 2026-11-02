@@ -7,7 +7,7 @@
  *
  * Format: "host:port:ssl" or "host:port:plain".
  * Older builds stored "host:port" from Daemon.getConnectionString(), which
- * drops the TLS flag. Port 443 is the documented XTE TLS daemon port, so
+ * drops the TLS flag. Port 443 is the usual TLS daemon port, so
  * those legacy strings are treated as SSL. Every other legacy port is plain
  * TCP, matching the public node list.
  */

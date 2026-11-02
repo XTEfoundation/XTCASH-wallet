@@ -60,7 +60,7 @@
 #endif
 }
 
-/* xte:// payment links -> React Native Linking (see src/MainScreen.js) */
+/* xtcash:// payment links -> React Native Linking (see src/MainScreen.js) */
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options

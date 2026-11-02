@@ -6,27 +6,58 @@ jest.mock('react-native', () => ({
     NativeModules: {},
 }));
 
-describe('XTE network identity', () => {
-    test('uses the documented coin parameters', () => {
-        expect(Config.coinName).toBe('XTE');
-        expect(Config.ticker).toBe('XTE');
-        expect(Config.addressPrefix).toBe(1334);
-        expect(Config.uriPrefix).toBe('xte://');
-        expect(Config.appName).toBe('XTE');
-        expect(Config.appVersion).toBe('v1.020.1');
+describe('XTCASH network identity', () => {
+    test('uses the traaittXTCASH coin parameters', () => {
+        expect(Config.coinName).toBe('XTCASH');
+        expect(Config.ticker).toBe('XTCASH');
+        expect(Config.addressPrefix).toBe(925524);
+        expect(Config.decimalPlaces).toBe(2);
+        expect(Config.blockTargetTime).toBe(32);
+        expect(Config.minimumFee).toBe(100);
+        expect(Config.standardAddressLength).toBe(98);
+        expect(Config.integratedAddressLength).toBe(186);
+        expect(Config.uriPrefix).toBe('xtcash://');
+        expect(Config.appName).toBe('XTCASH');
+        expect(Config.appVersion).toBe('v1.0.0');
     });
 
-    test('default daemon is the TLS node, not a cache API', () => {
+    test('mixin limits follow CryptoNoteConfig.h', () => {
+        expect(Config.mixinLimits.getDefaultMixinByHeight(0)).toBe(3);
+        expect(Config.mixinLimits.getMixinLimitsByHeight(440001)).toEqual([0, 4]);
+        expect(Config.mixinLimits.getMixinLimitsByHeight(800001)).toEqual([0, 5]);
+        expect(Config.mixinLimits.getMixinLimitsByHeight(2056799)).toEqual([0, 8]);
+        expect(Config.mixinLimits.getDefaultMixinByHeight(2056799)).toBe(8);
+    });
+
+    test('the default mixin passes the backend mixin check at the current height', () => {
+        const { validateMixin } = require('traaittcash-wallet-backend/dist/lib/ValidateParameters');
+        const height = 2056799;
+        const mixin = Config.mixinLimits.getDefaultMixinByHeight(height);
+
+        expect(validateMixin(mixin, height, Config).errorCode).toBe(0);
+        expect(validateMixin(9, height, Config).errorCode).not.toBe(0);
+    });
+
+    test('default daemon is the plain XTCASH RPC node, not a cache API', () => {
         expect(Config.defaultDaemon.host).toBe('main.trrxitte.com');
-        expect(Config.defaultDaemon.port).toBe(443);
-        expect(Config.defaultDaemon.ssl).toBe(true);
-        expect(Config.defaultDaemon.sslDetermined).toBe(true);
+        expect(Config.defaultDaemon.port).toBe(14423);
+        expect(Config.defaultDaemon.ssl).toBe(false);
         expect(Config.defaultDaemon.isCacheApi).toBe(false);
-        expect(Config.defaultNode).toBe('main.trrxitte.com:443:ssl');
+        expect(Config.defaultNode).toBe('main.trrxitte.com:14423:plain');
+        expect(parseNode(Config.defaultNode)).toEqual({ host: 'main.trrxitte.com', port: 14423, ssl: false });
         expect(Config.nodeListURL).toBe(
-            'https://raw.githubusercontent.com/TRRXITTE/XTEnetworkserver/refs/heads/main/traaitt.json',
+            'https://raw.githubusercontent.com/XTEfoundation/XTCASH-wallet/main/nodes.json',
         );
-        expect(Config.repoLink).toBe('https://github.com/XTEfoundation/XTEcash-wallet');
+        expect(Config.repoLink).toBe('https://github.com/XTEfoundation/XTCASH-wallet');
+    });
+
+    test('bundled node list only has XTCASH RPC nodes', () => {
+        const { nodes } = require('../../nodes.json');
+        expect(nodes.length).toBeGreaterThan(0);
+        for (const node of nodes) {
+            expect(node.port).toBe(14423);
+            expect(node.cache).toBe(false);
+        }
     });
 });
 
@@ -37,28 +68,28 @@ describe('node addresses', () => {
             port: 443,
             ssl: true,
         });
-        expect(parseNode(formatNode('us-east.trrxitte.com', 14485, false))).toEqual({
-            host: 'us-east.trrxitte.com',
-            port: 14485,
+        expect(parseNode(formatNode('eu-west.trrxitte.com', 14423, false))).toEqual({
+            host: 'eu-west.trrxitte.com',
+            port: 14423,
             ssl: false,
         });
     });
 
     test('legacy connection strings keep TLS only on port 443', () => {
         expect(parseNode('main.trrxitte.com:443').ssl).toBe(true);
-        expect(parseNode('eu.trrxitte.com:14485').ssl).toBe(false);
+        expect(parseNode('main.trrxitte.com:14423').ssl).toBe(false);
     });
 
     test('matches a listed node against the stored address', () => {
         const listed = {
-            url: 'asia-east.trrxitte.com',
-            port: 14485,
+            url: 'eu-west.trrxitte.com',
+            port: 14423,
             ssl: false,
         };
 
-        expect(formatListedNode(listed)).toBe('asia-east.trrxitte.com:14485:plain');
-        expect(sameNode('asia-east.trrxitte.com:14485:plain', listed)).toBe(true);
-        expect(sameNode('asia-east.trrxitte.com:14485', listed)).toBe(true);
+        expect(formatListedNode(listed)).toBe('eu-west.trrxitte.com:14423:plain');
+        expect(sameNode('eu-west.trrxitte.com:14423:plain', listed)).toBe(true);
+        expect(sameNode('eu-west.trrxitte.com:14423', listed)).toBe(true);
         expect(sameNode('main.trrxitte.com:443:ssl', listed)).toBe(false);
     });
 });

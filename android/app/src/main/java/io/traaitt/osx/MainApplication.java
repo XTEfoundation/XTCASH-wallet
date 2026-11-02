@@ -65,7 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
     upgradeSecurityProvider();
 
     /* Keep aligned with versionName in android/app/build.gradle */
-    setUserAgent("XTE-v" + BuildConfig.VERSION_NAME);
+    setUserAgent("XTCASH-v" + BuildConfig.VERSION_NAME);
 
     SoLoader.init(this, /* native exopackage */ false);
   }
