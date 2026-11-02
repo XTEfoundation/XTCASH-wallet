@@ -9,6 +9,13 @@ android/app/src/main/resources/sentry.properties
 .env.local
 .env.*
 .android-signing.env
+*.p12
+*.cer
+*.p8
+*.mobileprovision
+*.provisionprofile
+ExportOptions.plist
+ios/sentry.properties
 
 # Packages and logs
 *.apk
@@ -34,6 +41,12 @@ android/captures/
 ios/build/
 ios/Pods/
 ios/.xcode.env.local
+ios/*.xcarchive
+ios/*.ipa
+*.ipa
+*.dSYM.zip
+xcuserdata/
+*.xcworkspace/xcuserdata/
 
 # IDE and OS
 .vscode/

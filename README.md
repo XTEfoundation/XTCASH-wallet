@@ -115,6 +115,47 @@ If an upload key was ever committed here, treat it as compromised, generate a ne
 
 Release reporting is off unless `SENTRY_DSN` is set in the environment when the JS bundle is built. Babel inlines that variable and leaves reporting disabled when it is unset. Do not commit a DSN. Native symbol upload, if you enable it later, reads `android/sentry.properties` copied from `android/sentry.properties.example`. The auth token in that file is a secret and stays untracked. The Sentry Gradle plugin is not applied.
 
+## iOS build and release
+
+The Xcode project lives in `ios/XTE.xcodeproj` (React Native 0.68, JSC, old architecture). Always open the workspace that CocoaPods creates.
+
+| | |
+|---|---|
+| Display name | XTE |
+| Bundle identifier | `io.traaitt.osx` |
+| Version / build | `1.020.0` / `1020` (`MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` in the project) |
+| URL scheme | `xte://` |
+| Minimum iOS | 13.0, iPhone only, portrait |
+
+Requirements: macOS with Xcode 16 (CI uses Xcode 16.4 on `macos-15`), Node 18, Yarn 1, CocoaPods 1.15 or newer.
+
+```bash
+yarn install --frozen-lockfile
+cd ios && pod install && cd ..
+yarn ios            # or open ios/XTE.xcworkspace in Xcode
+```
+
+Notes:
+
+- **Simulator architecture.** `react-native-background-fetch` 3.1 ships `TSBackgroundFetch.framework` without an arm64 simulator slice, so simulator builds exclude arm64 and run as x86_64 (Rosetta on Apple Silicon). Device builds are unaffected.
+- **Native crypto.** `ios/XTE/XTEModule.mm` exposes the same `XTE` native module as Android. It compiles the shared C++ in `android/app/src/main/jni` (`crypto.cpp`, `BlockOutputs.cpp`, ...) so both platforms use one implementation. iOS uses it for key derivation, key images, ring signatures and block output scanning. `getWalletSyncData` (the cancellable HTTP request on Android) is not ported; iOS uses the JS HTTP client for that request.
+- **Background sync** uses BGTaskScheduler (`com.transistorsoft.fetch` in `Info.plist`). iOS decides when, and how often, it runs.
+- **Pods patches.** `patches/react-native+0.68.7.patch` points the boost podspec at `archives.boost.io` (the old JFrog URL is gone). The `Podfile` `post_install` raises every pod to iOS 13 and defines `_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION`, which current libc++ needs for RN 0.68's boost/Folly.
+
+CI (`.github/workflows/ci.yml`, job `ios`) runs `pod install` and an **unsigned** Release simulator build (`CODE_SIGNING_ALLOWED=NO`). It does not produce an installable or uploadable app.
+
+### Signing and App Store upload
+
+Nothing needed for signing is in this repository and none of it should be committed: no certificates (`.p12`), provisioning profiles (`.mobileprovision`), App Store Connect API keys (`.p8`) or team-specific `ExportOptions.plist`. `.gitignore` excludes them.
+
+To ship a build:
+
+1. In the Apple Developer account of the publishing organisation, register the App ID `io.traaitt.osx` and create the App Store Connect app record for it.
+2. Local release: open `ios/XTE.xcworkspace`, select the `XTE` target, *Signing & Capabilities*, choose your team and leave *Automatically manage signing* on (or select a distribution certificate and an App Store provisioning profile). Do not commit the resulting `DEVELOPMENT_TEAM` change if this is a shared branch. Then *Product, Archive* and *Distribute App, App Store Connect*.
+3. CI release (optional, not set up here): store the distribution certificate (base64 `.p12` plus password), the provisioning profile and an App Store Connect API key as encrypted GitHub Actions secrets. Import them into a temporary keychain in the job, pass `DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE=Manual` and `PROVISIONING_PROFILE_SPECIFIER` to `xcodebuild archive`, and upload with `xcodebuild -exportArchive` or `xcrun altool` / Transporter. Delete the keychain at the end of the job.
+
+Before App Store submission, also check: the Xcode/SDK version Apple currently requires for uploads (the project is verified on Xcode 16.4; newer SDKs may require an RN upgrade), the export-compliance answer (the app uses cryptography beyond HTTPS for wallet keys and signatures), a privacy manifest (`PrivacyInfo.xcprivacy`) for the required-reason APIs used by the app and its pods, and App Review's crypto-wallet rules (guideline 3.1.5: wallets must be published by an organisation).
+
 ## Tests
 
 ```bash
@@ -123,7 +164,7 @@ yarn test
 
 ## What is not in this release
 
-- **iOS.** `ios/TonChan` sources do not match the Xcode project, which still points at `traaittCashMobile` paths. Native crypto is disabled on iOS in `src/Config.js`. Android is the release target.
+- **A signed iOS build and an App Store listing.** The iOS project builds unsigned in CI; signing, the App Store Connect record and submission are separate steps (see *iOS build and release*).
 - **Play Store listing and a new upload key.** `applicationId` stays `io.traaitt.osx`. Store submission is a separate step after signing.
 - **React Native upgrade, Play targetSdk 35, and navigation v6.** AGP is 7.4.2 with compileSdk/targetSdk 34 so this dependency set still builds. Google Play's current target API is higher; that upgrade has to land with an AGP/namespace pass, not as a drive-by.
 - **The JS library package name** `traaittcash-wallet-backend`. That is the published module this app imports. It is not a user-visible name.

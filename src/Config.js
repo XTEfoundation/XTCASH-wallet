@@ -2,7 +2,6 @@
 //
 // Please see the included LICENSE file for more information.
 
-import { Platform } from 'react-native';
 
 import { MixinLimit, MixinLimits, Daemon } from 'traaittcash-wallet-backend';
 
@@ -117,32 +116,32 @@ const Config = new function() {
     /**
      * Use our native func instead of JS slowness
      */
-    this.derivePublicKey = Platform.OS === 'ios' ? undefined : derivePublicKey;
+    this.derivePublicKey = derivePublicKey;
 
     /**
      * Use our native func instead of JS slowness
      */
-    this.generateKeyDerivation = Platform.OS === 'ios' ? undefined : generateKeyDerivation;
+    this.generateKeyDerivation = generateKeyDerivation;
 
     /**
      * Use our native func instead of JS slowness
      */
-    this.generateRingSignatures = Platform.OS === 'ios' ? undefined : generateRingSignatures;
+    this.generateRingSignatures = generateRingSignatures;
 
     /**
      * Use our native func instead of JS slowness
      */
-    this.deriveSecretKey = Platform.OS === 'ios' ? undefined : deriveSecretKey;
+    this.deriveSecretKey = deriveSecretKey;
 
     /**
      * Use our native func instead of JS slowness
      */
-    this.generateKeyImage = Platform.OS === 'ios' ? undefined : generateKeyImage;
+    this.generateKeyImage = generateKeyImage;
 
     /**
      * Use our native func instead of JS slowness
      */
-    this.checkRingSignatures = Platform.OS === 'ios' ? undefined: checkRingSignature;
+    this.checkRingSignatures = checkRingSignature;
 
     /**
      * Memory to use for storing downloaded blocks - 3MB
