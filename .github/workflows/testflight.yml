@@ -166,10 +166,12 @@ jobs:
           unzip -o -q "$IPA" -d "$RUNNER_TEMP/ipa"
           APP=$(ls -d "$RUNNER_TEMP"/ipa/Payload/*.app)
           /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' -c 'Print :CFBundleShortVersionString' -c 'Print :CFBundleVersion' -c 'Print :DTSDKName' -c 'Print :DTXcode' "$APP/Info.plist"
+          test -f "$APP/PrivacyInfo.xcprivacy"
+          /usr/libexec/PlistBuddy -c 'Print :ITSAppUsesNonExemptEncryption' "$APP/Info.plist"
           codesign -dv "$APP" 2>&1 | grep -E "Authority|TeamIdentifier|Identifier"
 
       - name: Upload to TestFlight
-        if: ${{ inputs.upload != false }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.upload }}
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
