@@ -252,7 +252,7 @@ const Config = new function() {
     /**
      * A link to your app on the google play store
      */
-    this.googlePlayLink = 'https://play.google.com/store/apps/details?id=io.traaitt.cash';
+    this.googlePlayLink = 'https://play.google.com/store/apps/details?id=io.traaitt.xtcash';
 
     /**
      * A url to fetch node info from. Should follow the turtlepay format

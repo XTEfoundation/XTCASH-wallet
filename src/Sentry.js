@@ -41,6 +41,6 @@ export function initSentry() {
             dsn: sentryDsn,
         });
 
-        Sentry.setRelease('io.traaitt.cash-' + Config.appVersion);
+        Sentry.setRelease('io.traaitt.xtcash-' + Config.appVersion);
     }
 }

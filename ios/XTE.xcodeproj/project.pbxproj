@@ -508,7 +508,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.cash.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XTE.app/XTE";
 			};
@@ -533,7 +533,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.cash.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XTE.app/XTE";
 			};
@@ -562,7 +562,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.cash;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash;
 				PRODUCT_NAME = XTE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -592,7 +592,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.cash;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash;
 				PRODUCT_NAME = XTE;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

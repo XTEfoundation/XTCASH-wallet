@@ -1,13 +1,13 @@
 name: TestFlight
 
-# Signed Release archive of the iPhone app (io.traaitt.cash), exported as an
+# Signed Release archive of the iPhone app (io.traaitt.xtcash), exported as an
 # App Store .ipa and uploaded to TestFlight. Separate from ci.yml, which keeps
 # building the unsigned simulator app.
 #
 # Needs the repository secrets IOS_DIST_P12_BASE64, IOS_DIST_P12_PASSWORD,
 # IOS_PROFILE_BASE64, ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID, APPLE_TEAM_ID.
-# IOS_PROFILE_BASE64 is the App Store profile "XTCASH AppStore io.traaitt.cash"
-# (UUID 3d782dde-6035-4680-9d96-f061e1d57035).
+# IOS_PROFILE_BASE64 is the App Store profile "XTCASH AppStore io.traaitt.xtcash"
+# (UUID e0ba5de7-0e5f-44a0-8eff-a93a6ad72dfb).
 # Without them the "signing" job reports it and the TestFlight job is skipped,
 # so a fork or a repo without secrets never goes red because of this file.
 
@@ -67,9 +67,9 @@ jobs:
     runs-on: ${{ inputs.runner || 'macos-15-intel' }}
     timeout-minutes: 120
     env:
-      BUNDLE_ID: io.traaitt.cash
-      PROFILE_NAME: XTCASH AppStore io.traaitt.cash
-      PROFILE_UUID_EXPECTED: 3d782dde-6035-4680-9d96-f061e1d57035
+      BUNDLE_ID: io.traaitt.xtcash
+      PROFILE_NAME: XTCASH AppStore io.traaitt.xtcash
+      PROFILE_UUID_EXPECTED: e0ba5de7-0e5f-44a0-8eff-a93a6ad72dfb
     steps:
       - uses: actions/checkout@v4
 

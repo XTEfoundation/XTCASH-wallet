@@ -30,7 +30,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>io.traaitt.cash</string>
+			<string>io.traaitt.xtcash</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>xtcash</string>
