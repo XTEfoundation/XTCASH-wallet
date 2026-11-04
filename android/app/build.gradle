@@ -170,7 +170,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "io.traaitt.xtcash"
+        applicationId "io.traaitt.cash"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
