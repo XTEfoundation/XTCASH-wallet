@@ -180,6 +180,17 @@ const Config = new function() {
     this.blocksPerDaemonRequest = 40;
 
     /**
+     * JSON-RPC namespace of the xte-rpc-gateway on the node
+     * (https://<host>/rpc/<namespace>, <namespace>_syncBlocks)
+     */
+    this.gatewayNamespace = 'xtcash';
+
+    /**
+     * Blocks per <namespace>_syncBlocks call (the gateway allows up to 1000)
+     */
+    this.gatewayBlocksPerRequest = 1000;
+
+    /**
      * Unix timestamp of the time your chain was launched.
      * XTCASH: timestamp of block 1 (the genesis block header reports 0).
      * A launch time at or after the real one keeps date-based scan heights
@@ -255,7 +266,7 @@ const Config = new function() {
     /**
      * Displayed in the settings screen
      */
-    this.appVersion = 'v1.0.1';
+    this.appVersion = 'v1.0.2';
 
     /**
      * Base URL for us to chuck a hash on the end, and find a transaction

@@ -18,7 +18,7 @@ describe('XTCASH network identity', () => {
         expect(Config.integratedAddressLength).toBe(186);
         expect(Config.uriPrefix).toBe('xtcash://');
         expect(Config.appName).toBe('XTCASH');
-        expect(Config.appVersion).toBe('v1.0.1');
+        expect(Config.appVersion).toBe('v1.0.2');
     });
 
     test('mixin limits follow CryptoNoteConfig.h', () => {
