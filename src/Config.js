@@ -274,6 +274,26 @@ const Config = new function() {
     this.googlePlayLink = 'https://play.google.com/store/apps/details?id=io.traaitt.xtcash';
 
     /**
+     * Optional Google Drive backup (appDataFolder). Needs an OAuth client id
+     * from a Google Cloud project with the Drive API enabled; the share-sheet
+     * backup (Gmail / Drive app) works without it.
+     */
+    this.googleDriveBackup = { clientId: '' };
+
+    /**
+     * Hardware wallets. ledgerTransportFactory: () => Promise<transport>,
+     * set when a Ledger BLE/USB transport is bundled (see HardwareWallet.js).
+     */
+    this.hardwareWallet = { ledgerTransportFactory: null };
+
+    /**
+     * XMR swap providers (see Swap.js). Disabled: no service lists the coin
+     * yet. Example once listed: { id: 'changenow', enabled: true,
+     * apiKey: '<partner key>', toCurrency: 'xtcash' }.
+     */
+    this.swap = { providers: [] };
+
+    /**
      * A url to fetch node info from. Should follow the turtlepay format
      * detailed here: https://docs.turtlepay.io/blockapi/
      */
