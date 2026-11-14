@@ -12,8 +12,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		168C29EAEDA0182E5697A77D /* XTEWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9802936D0ADA6AD371DE5B1A /* XTEWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A46842B674F19AB9430828C /* XTEPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025258235BD2E6DD275471F9 /* XTEPlatform.swift */; };
+		2F4D851C7AF69F7665DDEC7B /* XTEWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ACBA57820F6B758EEC3EFD3D /* XTEWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		62E959AADDA36D228E58026E /* XTEWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C02BF1672A0B2EA767881 /* XTEWatchApp.swift */; };
 		7699B88040F8A987B510C191 /* libPods-XTE-XTETests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-XTE-XTETests.a */; };
+		7F33CF4CAA4090D3B929D511 /* WalletWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF1ADBDA0997817E518CF9A /* WalletWidgets.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		902BE348D8D6AF6E4FFA80E1 /* WalletShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07867C21EDF2E890A86BF84 /* WalletShared.swift */; };
+		96C731C20985EED220025061 /* WalletShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07867C21EDF2E890A86BF84 /* WalletShared.swift */; };
 		A1E5C0DE00000000000000B1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1E5C0DE00000000000000F1 /* PrivacyInfo.xcprivacy */; };
 		A7E000000000000000000003 /* XTEModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7E000000000000000000002 /* XTEModule.mm */; };
 		A7E000000000000000000005 /* BlockOutputs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E000000000000000000004 /* BlockOutputs.cpp */; };
@@ -22,6 +29,10 @@
 		A7E00000000000000000000B /* crypto-ops-data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E00000000000000000000A /* crypto-ops-data.cpp */; };
 		A7E00000000000000000000D /* hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E00000000000000000000C /* hash.cpp */; };
 		A7E00000000000000000000F /* keccak.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E00000000000000000000E /* keccak.cpp */; };
+		B39F7D6F9D7B849D3741DBBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46210278E8EA7E6D0E7D82F6 /* Assets.xcassets */; };
+		C2DB1D2A283E4315A164CB1B /* WalletIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351194178353917BCD87ECEF /* WalletIntents.swift */; };
+		F2CAE740DE6E15A3E8F44AB2 /* XTEPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F7974C2CBF3F14D09332CA /* XTEPlatform.m */; };
+		F3C01A3A63A0EB20E903216A /* WalletShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07867C21EDF2E890A86BF84 /* WalletShared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,12 +43,54 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = XTE;
 		};
+		B5B25A302BAF7D2BA63CA2EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 517D0E9E8B8DEA8F36E36509;
+			remoteInfo = XTEWatch;
+		};
+		D555873C728B359F2022664C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17052634CDE923FCAD3DF212;
+			remoteInfo = XTEWidgets;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1780E5E723F81A82A72DA5D3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				168C29EAEDA0182E5697A77D /* XTEWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7CB4AD30A6563F50C3448B8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				2F4D851C7AF69F7665DDEC7B /* XTEWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* XTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* XTETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTETests.m; sourceTree = "<group>"; };
+		025258235BD2E6DD275471F9 /* XTEPlatform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XTEPlatform.swift; sourceTree = "<group>"; };
+		0A7C02BF1672A0B2EA767881 /* XTEWatchApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XTEWatchApp.swift; sourceTree = "<group>"; };
+		0C1FD1275DF8AFA86774A3B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* XTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = XTE/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = XTE/AppDelegate.mm; sourceTree = "<group>"; };
@@ -45,31 +98,41 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = XTE/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = XTE/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-XTE-XTETests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XTE-XTETests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		351194178353917BCD87ECEF /* WalletIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletIntents.swift; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-XTE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTE.debug.xcconfig"; path = "Target Support Files/Pods-XTE/Pods-XTE.debug.xcconfig"; sourceTree = "<group>"; };
+		46210278E8EA7E6D0E7D82F6 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5405CD253633497A3062DB0E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-XTE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTE.release.xcconfig"; path = "Target Support Files/Pods-XTE/Pods-XTE.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-XTE-XTETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTE-XTETests.debug.xcconfig"; path = "Target Support Files/Pods-XTE-XTETests/Pods-XTE-XTETests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-XTE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XTE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = XTE/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A1E5C0DE00000000000000F1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = XTE/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-XTE-XTETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTE-XTETests.release.xcconfig"; path = "Target Support Files/Pods-XTE-XTETests/Pods-XTE-XTETests.release.xcconfig"; sourceTree = "<group>"; };
-		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		90F7974C2CBF3F14D09332CA /* XTEPlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XTEPlatform.m; sourceTree = "<group>"; };
+		9802936D0ADA6AD371DE5B1A /* XTEWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XTEWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E5C0DE00000000000000F1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = XTE/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A7E000000000000000000001 /* XTEModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XTEModule.h; path = XTE/XTEModule.h; sourceTree = "<group>"; };
 		A7E000000000000000000002 /* XTEModule.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XTEModule.mm; path = XTE/XTEModule.mm; sourceTree = "<group>"; };
 		A7E000000000000000000004 /* BlockOutputs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockOutputs.cpp; path = ../android/app/src/main/jni/BlockOutputs.cpp; sourceTree = "<group>"; };
 		A7E000000000000000000006 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crypto.cpp; path = ../android/app/src/main/jni/crypto.cpp; sourceTree = "<group>"; };
-		A7E000000000000000000008 /* crypto-ops.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crypto-ops.cpp; path = ../android/app/src/main/jni/crypto-ops.cpp; sourceTree = "<group>"; };
-		A7E00000000000000000000A /* crypto-ops-data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crypto-ops-data.cpp; path = ../android/app/src/main/jni/crypto-ops-data.cpp; sourceTree = "<group>"; };
+		A7E000000000000000000008 /* crypto-ops.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "crypto-ops.cpp"; path = "../android/app/src/main/jni/crypto-ops.cpp"; sourceTree = "<group>"; };
+		A7E00000000000000000000A /* crypto-ops-data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "crypto-ops-data.cpp"; path = "../android/app/src/main/jni/crypto-ops-data.cpp"; sourceTree = "<group>"; };
 		A7E00000000000000000000C /* hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hash.cpp; path = ../android/app/src/main/jni/hash.cpp; sourceTree = "<group>"; };
 		A7E00000000000000000000E /* keccak.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = keccak.cpp; path = ../android/app/src/main/jni/keccak.cpp; sourceTree = "<group>"; };
 		A7E000000000000000000010 /* BlockOutputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockOutputs.h; path = ../android/app/src/main/jni/BlockOutputs.h; sourceTree = "<group>"; };
 		A7E000000000000000000011 /* CryptoTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CryptoTypes.h; path = ../android/app/src/main/jni/CryptoTypes.h; sourceTree = "<group>"; };
 		A7E000000000000000000012 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = ../android/app/src/main/jni/Types.h; sourceTree = "<group>"; };
 		A7E000000000000000000013 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto.h; path = ../android/app/src/main/jni/crypto.h; sourceTree = "<group>"; };
-		A7E000000000000000000014 /* crypto-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto-ops.h; path = ../android/app/src/main/jni/crypto-ops.h; sourceTree = "<group>"; };
+		A7E000000000000000000014 /* crypto-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "crypto-ops.h"; path = "../android/app/src/main/jni/crypto-ops.h"; sourceTree = "<group>"; };
 		A7E000000000000000000015 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hash.h; path = ../android/app/src/main/jni/hash.h; sourceTree = "<group>"; };
 		A7E000000000000000000016 /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keccak.h; path = ../android/app/src/main/jni/keccak.h; sourceTree = "<group>"; };
 		A7E000000000000000000017 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = ../android/app/src/main/jni/random.h; sourceTree = "<group>"; };
 		A7E000000000000000000018 /* Varint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Varint.h; path = ../android/app/src/main/jni/Varint.h; sourceTree = "<group>"; };
+		ACBA57820F6B758EEC3EFD3D /* XTEWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTEWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEF1ADBDA0997817E518CF9A /* WalletWidgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletWidgets.swift; sourceTree = "<group>"; };
+		C07867C21EDF2E890A86BF84 /* WalletShared.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletShared.swift; sourceTree = "<group>"; };
+		E489E4CDBA59FFC34072F6E2 /* XTEWidgets.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = XTEWidgets.entitlements; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FBC57C816CFE7DB1B366B64F /* XTE.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = XTE.entitlements; path = XTE/XTE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +149,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-XTE.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA36B9A47229D07AD1D25AB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAC185965F2E081A65D04F3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +186,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		087336E7591115C9378CE757 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* XTE */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +205,8 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				A7E000000000000000000001 /* XTEModule.h */,
 				A7E000000000000000000002 /* XTEModule.mm */,
+				E975AC4E5145C85716801326 /* Platform */,
+				FBC57C816CFE7DB1B366B64F /* XTE.entitlements */,
 			);
 			name = XTE;
 			sourceTree = "<group>";
@@ -131,8 +217,19 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-XTE.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-XTE-XTETests.a */,
+				087336E7591115C9378CE757 /* iOS */,
+				83B88B4C39D45BD9B70501F0 /* watchOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72EFE3F4CEC0D2519F155ACD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C07867C21EDF2E890A86BF84 /* WalletShared.swift */,
+			);
+			name = Shared;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -140,6 +237,13 @@
 			children = (
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83B88B4C39D45BD9B70501F0 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = watchOS;
 			sourceTree = "<group>";
 		};
 		83CBB9F61A601CBA00E9B192 = {
@@ -152,6 +256,9 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				72EFE3F4CEC0D2519F155ACD /* Shared */,
+				85B2D193774E1F5F76406E93 /* XTEWidgets */,
+				ED3C279D93777DACC02F6582 /* XTEWatch */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -163,19 +270,21 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* XTE.app */,
 				00E356EE1AD99517003FC87E /* XTETests.xctest */,
+				9802936D0ADA6AD371DE5B1A /* XTEWidgets.appex */,
+				ACBA57820F6B758EEC3EFD3D /* XTEWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
+		85B2D193774E1F5F76406E93 /* XTEWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-XTE.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-XTE.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-XTE-XTETests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-XTE-XTETests.release.xcconfig */,
+				BEF1ADBDA0997817E518CF9A /* WalletWidgets.swift */,
+				0C1FD1275DF8AFA86774A3B8 /* Info.plist */,
+				E489E4CDBA59FFC34072F6E2 /* XTEWidgets.entitlements */,
 			);
-			path = Pods;
+			name = XTEWidgets;
+			path = XTEWidgets;
 			sourceTree = "<group>";
 		};
 		A7E000000000000000000019 /* SharedCrypto */ = {
@@ -198,6 +307,39 @@
 				A7E000000000000000000018 /* Varint.h */,
 			);
 			name = SharedCrypto;
+			sourceTree = "<group>";
+		};
+		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B4392A12AC88292D35C810B /* Pods-XTE.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-XTE.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-XTE-XTETests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-XTE-XTETests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E975AC4E5145C85716801326 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				025258235BD2E6DD275471F9 /* XTEPlatform.swift */,
+				90F7974C2CBF3F14D09332CA /* XTEPlatform.m */,
+				351194178353917BCD87ECEF /* WalletIntents.swift */,
+			);
+			name = Platform;
+			path = XTE/Platform;
+			sourceTree = "<group>";
+		};
+		ED3C279D93777DACC02F6582 /* XTEWatch */ = {
+			isa = PBXGroup;
+			children = (
+				0A7C02BF1672A0B2EA767881 /* XTEWatchApp.swift */,
+				46210278E8EA7E6D0E7D82F6 /* Assets.xcassets */,
+				5405CD253633497A3062DB0E /* Info.plist */,
+			);
+			name = XTEWatch;
+			path = XTEWatch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,14 +378,52 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				1780E5E723F81A82A72DA5D3 /* Embed Foundation Extensions */,
+				A7CB4AD30A6563F50C3448B8 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10A1F32476E9711BCCE905FC /* PBXTargetDependency */,
+				09A4239A0BEC8A4FFD3A39AE /* PBXTargetDependency */,
+			);
+			name = XTE;
+			productName = XTE;
+			productReference = 13B07F961A680F5B00A75B9A /* XTE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		17052634CDE923FCAD3DF212 /* XTEWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF93011ADA7EDBA727AC48A6 /* Build configuration list for PBXNativeTarget "XTEWidgets" */;
+			buildPhases = (
+				0C90CE43EF91759B5EC58AA1 /* Sources */,
+				EA36B9A47229D07AD1D25AB5 /* Frameworks */,
+				D0A1DB96409DA79BCAB545C9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = XTE;
-			productName = XTE;
-			productReference = 13B07F961A680F5B00A75B9A /* XTE.app */;
+			name = XTEWidgets;
+			productName = XTEWidgets;
+			productReference = 9802936D0ADA6AD371DE5B1A /* XTEWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		517D0E9E8B8DEA8F36E36509 /* XTEWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04CB621B8820CA4B568E816B /* Build configuration list for PBXNativeTarget "XTEWatch" */;
+			buildPhases = (
+				5A0101610DB197BBC1810561 /* Sources */,
+				FAC185965F2E081A65D04F3F /* Frameworks */,
+				1D9F458A18DFC82ADE8CDC1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XTEWatch;
+			productName = XTEWatch;
+			productReference = ACBA57820F6B758EEC3EFD3D /* XTEWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -278,6 +458,8 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* XTE */,
 				00E356ED1AD99517003FC87E /* XTETests */,
+				17052634CDE923FCAD3DF212 /* XTEWidgets */,
+				517D0E9E8B8DEA8F36E36509 /* XTEWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -297,6 +479,21 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				A1E5C0DE00000000000000B1 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D9F458A18DFC82ADE8CDC1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B39F7D6F9D7B849D3741DBBD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A1DB96409DA79BCAB545C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +656,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0C90CE43EF91759B5EC58AA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F33CF4CAA4090D3B929D511 /* WalletWidgets.swift in Sources */,
+				96C731C20985EED220025061 /* WalletShared.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +678,19 @@
 				A7E00000000000000000000B /* crypto-ops-data.cpp in Sources */,
 				A7E00000000000000000000D /* hash.cpp in Sources */,
 				A7E00000000000000000000F /* keccak.cpp in Sources */,
+				1A46842B674F19AB9430828C /* XTEPlatform.swift in Sources */,
+				F2CAE740DE6E15A3E8F44AB2 /* XTEPlatform.m in Sources */,
+				C2DB1D2A283E4315A164CB1B /* WalletIntents.swift in Sources */,
+				F3C01A3A63A0EB20E903216A /* WalletShared.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A0101610DB197BBC1810561 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62E959AADDA36D228E58026E /* XTEWatchApp.swift in Sources */,
+				902BE348D8D6AF6E4FFA80E1 /* WalletShared.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +702,18 @@
 			target = 13B07F861A680F5B00A75B9A /* XTE */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		09A4239A0BEC8A4FFD3A39AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XTEWatch;
+			target = 517D0E9E8B8DEA8F36E36509 /* XTEWatch */;
+			targetProxy = B5B25A302BAF7D2BA63CA2EF /* PBXContainerItemProxy */;
+		};
+		10A1F32476E9711BCCE905FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XTEWidgets;
+			target = 17052634CDE923FCAD3DF212 /* XTEWidgets */;
+			targetProxy = D555873C728B359F2022664C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -491,11 +722,11 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-XTE-XTETests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = XTETests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -539,24 +770,52 @@
 			};
 			name = Release;
 		};
+		1270FAD8C02643051F1DE916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_LANGUAGE = en;
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = XTEWatch/Info.plist;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.traaitt.xtcash;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.watchkitapp;
+				PRODUCT_NAME = XTEWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-XTE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = XTE/XTE.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = XTE/Info.plist;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = XTE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.3;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../android/app/src/main/jni";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -566,6 +825,11 @@
 				PRODUCT_NAME = XTE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../android/app/src/main/jni",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -576,17 +840,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = XTE/XTE.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = XTE/Info.plist;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = XTE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.3;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../android/app/src/main/jni";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -595,9 +858,77 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash;
 				PRODUCT_NAME = XTE;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../android/app/src/main/jni",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
+		};
+		1D4713F746FAFEBD22C7C816 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = XTEWidgets/XTEWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_LANGUAGE = en;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = XTEWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.widget;
+				PRODUCT_NAME = XTEWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26D25535A30C5A1D02F7ED9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = XTEWidgets/XTEWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_LANGUAGE = en;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = XTEWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.widget;
+				PRODUCT_NAME = XTEWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -734,6 +1065,36 @@
 			};
 			name = Release;
 		};
+		AB394F30094E54DC2B6514D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_LANGUAGE = en;
+				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = XTEWatch/Info.plist;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.traaitt.xtcash;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = io.traaitt.xtcash.watchkitapp;
+				PRODUCT_NAME = XTEWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -742,6 +1103,15 @@
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
 				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04CB621B8820CA4B568E816B /* Build configuration list for PBXNativeTarget "XTEWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB394F30094E54DC2B6514D7 /* Release */,
+				1270FAD8C02643051F1DE916 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -760,6 +1130,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF93011ADA7EDBA727AC48A6 /* Build configuration list for PBXNativeTarget "XTEWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D4713F746FAFEBD22C7C816 /* Release */,
+				26D25535A30C5A1D02F7ED9B /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

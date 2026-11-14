@@ -37,6 +37,16 @@
 				<string>xtcash</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>io.traaitt.xtcash.route</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>xtcashwallet</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -63,6 +73,13 @@
 	<string>XTCASH uses Face ID to unlock your wallet and confirm transactions.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>XTCASH does not record audio. The QR code scanner's camera library declares microphone access, but XTCASH never uses it.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>io.traaitt.xtcashwallet.receive</string>
+		<string>io.traaitt.xtcashwallet.send</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -74,6 +91,48 @@
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>qrcode</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Receive</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.traaitt.wallet.receive</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>xtcashwallet://receive</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>paperplane</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Send</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.traaitt.wallet.send</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>xtcashwallet://send</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>list.bullet</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Transactions</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.traaitt.wallet.transactions</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>xtcashwallet://transactions</string>
+			</dict>
+		</dict>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -92,5 +151,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>WalletActivityPrefix</key>
+	<string>io.traaitt.xtcashwallet</string>
+	<key>WalletPaymentScheme</key>
+	<string>xtcash</string>
+	<key>WalletRouteScheme</key>
+	<string>xtcashwallet</string>
+	<key>WalletSharedKeychainGroup</key>
+	<string>$(AppIdentifierPrefix)io.traaitt.xtcash.shared</string>
+	<key>WalletTicker</key>
+	<string>XTCASH</string>
 </dict>
 </plist>
