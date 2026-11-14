@@ -292,6 +292,9 @@ public class XTEModule extends ReactContextBaseJavaModule {
             /* 10 second timeout */
             connection.setConnectTimeout(10000);
 
+            /* Sparse sync batches can take 20+ seconds on XTCASH nodes */
+            connection.setReadTimeout(60000);
+
             /* We're sending a JSON post */
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");

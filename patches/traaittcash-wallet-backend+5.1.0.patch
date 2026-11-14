@@ -1,0 +1,40 @@
+diff --git a/node_modules/traaittcash-wallet-backend/dist/lib/Daemon.js b/node_modules/traaittcash-wallet-backend/dist/lib/Daemon.js
+index 98f1877..71fc072 100644
+--- a/node_modules/traaittcash-wallet-backend/dist/lib/Daemon.js
++++ b/node_modules/traaittcash-wallet-backend/dist/lib/Daemon.js
+@@ -133,6 +133,17 @@ class Daemon extends events_1.EventEmitter {
+             this.sslDetermined = true;
+         }
+     }
++    /**
++     * Builds a request URL. The host may carry a path prefix, e.g.
++     * "main.trrxitte.com/xtcash" for a daemon served behind a TLS reverse
++     * proxy under a sub path (https://main.trrxitte.com/xtcash/info).
++     */
++    urlFor(protocol, endpoint) {
++        const slash = this.host.indexOf('/');
++        const hostname = slash === -1 ? this.host : this.host.slice(0, slash);
++        const prefix = slash === -1 ? '' : this.host.slice(slash).replace(/\/+$/, '');
++        return `${protocol}://${hostname}:${this.port}${prefix}${endpoint}`;
++    }
+     updateConfig(config) {
+         this.config = Config_1.MergeConfig(config);
+     }
+@@ -443,7 +454,7 @@ class Daemon extends events_1.EventEmitter {
+                 const data = yield request(Object.assign(Object.assign(Object.assign({}, options), this.config.customRequestOptions), { 
+                     /* Start by trying HTTPS if we haven't determined whether it's
+                        HTTPS or HTTP yet. */
+-                    url: `${protocol}://${this.host}:${this.port}${endpoint}`, agent: protocol === 'https' ? this.httpsAgent : this.httpAgent }));
++                    url: this.urlFor(protocol, endpoint), agent: protocol === 'https' ? this.httpsAgent : this.httpAgent }));
+                 /* Cool, https works. Store for later. */
+                 if (!this.sslDetermined) {
+                     this.ssl = true;
+@@ -469,7 +480,7 @@ class Daemon extends events_1.EventEmitter {
+                 try {
+                     const data = yield request(Object.assign(Object.assign({}, options), { 
+                         /* Lets try HTTP now. */
+-                        url: `http://${this.host}:${this.port}${endpoint}`, agent: this.httpAgent }));
++                        url: this.urlFor('http', endpoint), agent: this.httpAgent }));
+                     this.ssl = false;
+                     this.sslDetermined = true;
+                     if (!this.connected) {

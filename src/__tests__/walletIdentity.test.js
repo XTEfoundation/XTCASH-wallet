@@ -18,7 +18,7 @@ describe('XTCASH network identity', () => {
         expect(Config.integratedAddressLength).toBe(186);
         expect(Config.uriPrefix).toBe('xtcash://');
         expect(Config.appName).toBe('XTCASH');
-        expect(Config.appVersion).toBe('v1.0.0');
+        expect(Config.appVersion).toBe('v1.0.1');
     });
 
     test('mixin limits follow CryptoNoteConfig.h', () => {
@@ -38,13 +38,13 @@ describe('XTCASH network identity', () => {
         expect(validateMixin(9, height, Config).errorCode).not.toBe(0);
     });
 
-    test('default daemon is the plain XTCASH RPC node, not a cache API', () => {
-        expect(Config.defaultDaemon.host).toBe('main.trrxitte.com');
-        expect(Config.defaultDaemon.port).toBe(14423);
-        expect(Config.defaultDaemon.ssl).toBe(false);
+    test('default daemon is the XTCASH daemon behind the main.trrxitte.com TLS proxy, not a cache API', () => {
+        expect(Config.defaultDaemon.host).toBe('main.trrxitte.com/xtcash');
+        expect(Config.defaultDaemon.port).toBe(443);
+        expect(Config.defaultDaemon.ssl).toBe(true);
         expect(Config.defaultDaemon.isCacheApi).toBe(false);
-        expect(Config.defaultNode).toBe('main.trrxitte.com:14423:plain');
-        expect(parseNode(Config.defaultNode)).toEqual({ host: 'main.trrxitte.com', port: 14423, ssl: false });
+        expect(Config.defaultNode).toBe('main.trrxitte.com/xtcash:443:ssl');
+        expect(parseNode(Config.defaultNode)).toEqual({ host: 'main.trrxitte.com/xtcash', port: 443, ssl: true });
         expect(Config.nodeListURL).toBe(
             'https://raw.githubusercontent.com/XTEfoundation/XTCASH-wallet/main/nodes.json',
         );
@@ -55,7 +55,13 @@ describe('XTCASH network identity', () => {
         const { nodes } = require('../../nodes.json');
         expect(nodes.length).toBeGreaterThan(0);
         for (const node of nodes) {
-            expect(node.port).toBe(14423);
+            /* XTCASH RPC port, or 443 only for the /xtcash TLS proxy path (443 alone serves XTE) */
+            if (node.port === 443) {
+                expect(node.url).toMatch(/\/xtcash$/);
+                expect(node.ssl).toBe(true);
+            } else {
+                expect(node.port).toBe(14423);
+            }
             expect(node.cache).toBe(false);
         }
     });

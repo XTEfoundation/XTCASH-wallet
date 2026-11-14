@@ -1,6 +1,13 @@
 {
   "nodes": [
     {
+      "name": "MAIN XTCASH (US Central, SSL)",
+      "url": "main.trrxitte.com/xtcash",
+      "port": 443,
+      "ssl": true,
+      "cache": false
+    },
+    {
       "name": "MAIN XTCASH (US Central)",
       "url": "main.trrxitte.com",
       "port": 14423,
